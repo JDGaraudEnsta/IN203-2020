@@ -120,7 +120,14 @@ computeMandelbrotSet( int W, int H, int maxIter )
       computeMandelbrotSetRow(W, H, maxIter, i, pixels_loc.data() + W*(H_loc-i-1) );
     }
 
-    
+
+    // MPI_Gather(pixels, pixels_loc, ...); 
+
+    // if rank =0 :
+    //   for (src = 1, nbproc)
+    //     MPI_Recv(pixels.data() + offset , , ...); 
+    // else
+    //   MPI_Send(pixels_loc, ...) 
     
     end = std::chrono::system_clock::now();
     std::chrono::duration<double> elapsed_seconds = end-start;
